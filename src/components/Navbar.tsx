@@ -2,9 +2,16 @@
 import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Menu, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    // For now, just navigate to the builder page
+    navigate('/builder');
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 py-4">
@@ -30,7 +37,10 @@ const Navbar = () => {
             <a href="#contact" className="text-gray-300 hover:text-futuristic-purple transition-colors duration-300">
               Contact
             </a>
-            <Button className="bg-gradient-to-r from-futuristic-blue to-futuristic-purple hover:opacity-90 transition-opacity">
+            <Button 
+              onClick={handleGetStarted}
+              className="bg-gradient-to-r from-futuristic-blue to-futuristic-purple hover:opacity-90 transition-opacity"
+            >
               Get Started
             </Button>
           </div>
@@ -81,8 +91,9 @@ const Navbar = () => {
                 Contact
               </a>
               <Button 
+                onClick={handleGetStarted}
                 className="bg-gradient-to-r from-futuristic-blue to-futuristic-purple hover:opacity-90 transition-opacity w-full"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClickCapture={() => setIsMobileMenuOpen(false)}
               >
                 Get Started
               </Button>
