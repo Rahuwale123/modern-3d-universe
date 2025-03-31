@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
@@ -54,16 +53,15 @@ const HeroSection = () => {
             className="max-w-3xl mx-auto mb-8"
           >
             <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-              <Input
-                type="text"
-                placeholder="Describe your dream website..."
+              <textarea
                 value={prompt}
-                onChange={handlePromptChange}
-                className="flex-grow bg-black/30 border-futuristic-purple text-white focus-visible:ring-futuristic-purple"
+                onChange={(e) => setPrompt(e.target.value)}
+                placeholder="Describe your dream website in detail. The more specific you are, the better the result!"
+                className="flex-grow min-h-[120px] bg-black/30 border border-futuristic-purple text-white focus-visible:ring-futuristic-purple p-4 rounded-lg resize-none"
               />
               <Button 
                 type="submit" 
-                className="bg-gradient-to-r from-futuristic-blue to-futuristic-purple hover:opacity-90 transition-opacity"
+                className="bg-gradient-to-r from-futuristic-blue to-futuristic-purple hover:opacity-90 transition-opacity self-start"
               >
                 <Send className="mr-2 h-4 w-4" />
                 Generate

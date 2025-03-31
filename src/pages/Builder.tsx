@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Send } from "lucide-react";
 
 const Builder = () => {
@@ -10,7 +9,7 @@ const Builder = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedCode, setGeneratedCode] = useState('');
   
-  const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePromptChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setPrompt(e.target.value);
   };
   
@@ -19,7 +18,10 @@ const Builder = () => {
     if (!prompt.trim()) return;
     
     // Add user message to chat
-    const newMessages = [...messages, { role: 'user', content: prompt }];
+    const newMessages: {role: 'user' | 'assistant', content: string}[] = [
+      ...messages, 
+      { role: 'user', content: prompt }
+    ];
     setMessages(newMessages);
     
     // Simulate AI processing
@@ -72,12 +74,12 @@ const Builder = () => {
         
         {/* Prompt input */}
         <div className="p-4 border-t border-white/10">
-          <form onSubmit={handleSubmit} className="flex gap-2">
-            <Input
+          <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+            <textarea
               value={prompt}
               onChange={handlePromptChange}
-              placeholder="Describe your website..."
-              className="flex-1 bg-black/30 border-futuristic-purple text-white"
+              placeholder="Describe the website you want to build in detail. The more specific you are, the better the result!"
+              className="w-full min-h-[120px] bg-black/30 border border-futuristic-purple text-white rounded-lg p-3 resize-none focus:ring-2 focus:ring-futuristic-purple"
               disabled={isGenerating}
             />
             <Button 
@@ -85,7 +87,8 @@ const Builder = () => {
               disabled={isGenerating || !prompt.trim()}
               className="bg-gradient-to-r from-futuristic-blue to-futuristic-purple"
             >
-              <Send size={18} />
+              <Send size={18} className="mr-2" />
+              Generate Website
             </Button>
           </form>
         </div>
