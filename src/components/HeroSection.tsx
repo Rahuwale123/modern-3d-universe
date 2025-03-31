@@ -4,9 +4,6 @@ import { Button } from './ui/button';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 
-// Adding framer-motion dependency
-<lov-add-dependency>framer-motion@^10.16.4</lov-add-dependency>
-
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center py-20 overflow-hidden">
